@@ -1,36 +1,94 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# INARI EduBridge — Your Gateway to Study in Japan
 
-## Getting Started
+INARI EduBridge is a premium, full-stack education information ecosystem developed on behalf of **INARI Japanese Language Hub**. 
 
-First, run the development server:
+The platform aggregates Japanese university profiles, scholarship schemes, step-by-step chronological timelines, cost of living breakdowns, and an educational news hub into a unified, responsive interface.
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+🌐 **Live Website Link:** [https://inari-edubridge.netlify.app](https://inari-edubridge.netlify.app)
+
+---
+
+## ✨ Core Key Features
+
+### 🏫 Unified Japanese University Directory
+* Fully searchable directory of national and private universities across Japan.
+* Multi-criteria filters: region prefectures, university type (National vs Private), degree levels, language of instruction (English vs Japanese programs), and scholarship eligibility.
+* Tabbed detail sheets for campuses detailing: Programs, Admissions, Tuition fees, and counseling contacts.
+* STATEFUL client bookmarks saving system to compare target choices instantly.
+
+### 💰 Scholarship Finder
+* Cataloged database of fully-funded MEXT government awards, JASSO stipends, and institutional tuition-reduction schemes.
+* Highlighted coverage categories (Full vs Partial coverage) and country-abroad application eligibility alerts.
+
+### 📅 Chronological Step-by-Step Study Guide
+* Interactive 9-step timeline from setting goals to EJU/JLPT preparations, Certificate of Eligibility (COE) submittals, visas, and airline arrivals.
+* Guidelines for standardized examinations and Study/Research plan drafting.
+
+### 🏠 Student Life & Budgeting Calculator
+* Detail sheets for lodging types (Dormitories, Shared houses, and Private apartments) with monthly budgets.
+* Comprehensive living costs tables (Rent, Food, Utilities, Health insurance, and Commuters passes).
+* Official legal guidelines for student part-time employment (28-hour weekly limits, Shikakugai-katsudo work permits).
+
+### 💬 Admissions counseling Inquiry
+* Interactive counseling intake form featuring client-side reactive input state checks, email validations, and successful submissions.
+
+---
+
+## 🛠️ Technology Stack & Resilient Architecture
+
+* **Framework:** React + Next.js (App Router routing structures)
+* **Styling:** Tailwind CSS (Custom color maps, Outfit headings, Inter body text, seigaiha visual waveform layers)
+* **Database & API:** Next.js Server API endpoints connected to AWS DynamoDB document client query scans
+* **Resilient DB Fallback:** Data queries check for active AWS access credentials. If env files are absent, they seamlessly and silently fall back to the rich static mockup catalog inside our database services layer to ensure 100% serverless compile uptime.
+
+---
+
+## 📂 Project Structure Map
+
+```text
+├── src/
+│   ├── app/                      # Next.js App Router Page directories
+│   │   ├── api/contact/          # Server API endpoints
+│   │   ├── about/                # About page
+│   │   ├── blog/                 # Blog list & Dynamic blog detail page
+│   │   ├── contact/              # Interactive counseling form
+│   │   ├── scholarships/         # Scholarships list & Scholarship details
+│   │   ├── student-life/         # Living expenses & Job rules
+│   │   ├── study-guide/          # Chronological 9-step timeline
+│   │   └── universities/         # Universities list & Campus detail tabs
+│   ├── components/
+│   │   ├── cards/                # Reusable display cards
+│   │   ├── layout/               # Navbars, Footers, mobile drawers
+│   │   ├── sections/             # Landing Hero, Accordions, CTA components
+│   │   └── ui/                   # Badges, Breadcrumbs, search/filter forms
+│   ├── lib/
+│   │   ├── data.ts               # Complete fallback mock database
+│   │   └── dynamodb.ts           # AWS Client service queries
+│   └── types/
+│       ├── university.ts         # TypeScript types definitions
+│       └── scholarship.ts
+└── public/                       # Static public assets
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+---
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## 🚀 Getting Started Locally
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+Follow these quick commands to spin up the local development environment:
 
-## Learn More
+### 1. Install Dependencies
+```bash
+npm install
+```
 
-To learn more about Next.js, take a look at the following resources:
+### 2. Run local Development Server
+```bash
+npm run dev
+```
+Open [http://localhost:3000](http://localhost:3000) inside your browser to inspect the application.
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+### 3. Compile Production Bundle
+```bash
+npm run build
+```
+This performs dynamic page optimization, TypeScript checks, and builds static pre-rendered pages.
